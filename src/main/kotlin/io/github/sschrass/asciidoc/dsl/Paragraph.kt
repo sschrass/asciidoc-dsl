@@ -1,4 +1,4 @@
-package de.sschrass.asciidoc.dsl
+package io.github.sschrass.asciidoc.dsl
 
 class Paragraph : Element {
     private val text = mutableListOf<String>()

@@ -8,7 +8,7 @@ plugins {
     id("com.asarkar.gradle.build-time-tracker") version "3.0.1"
 }
 
-group = "de.sschrass"
+group = "io.github.sschrass"
 version = "0.1.0-SNAPSHOT"
 
 repositories {

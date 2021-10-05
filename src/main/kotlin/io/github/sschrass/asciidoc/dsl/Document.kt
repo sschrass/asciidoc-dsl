@@ -1,4 +1,4 @@
-package de.sschrass.asciidoc.dsl
+package io.github.sschrass.asciidoc.dsl
 
 class Document {
     private val level = 0
