@@ -1,5 +1,8 @@
 package io.github.sschrass.asciidoc.dsl
 
+/**
+ * A Title.
+ */
 class Title(
     private val level: Int
 ) : Element {
