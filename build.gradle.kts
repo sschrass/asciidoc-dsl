@@ -30,6 +30,13 @@ java {
     targetCompatibility = JavaVersion.VERSION_16
 }
 
+val dokka = tasks.dokkaJavadoc
+val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
+    dependsOn(dokka)
+    archiveClassifier.set("javadoc")
+    from(dokka)
+}
+
 publishing {
     publications {
         create<MavenPublication>(rootProject.name) {
@@ -38,6 +45,30 @@ publishing {
             version = version.toString()
 
             from(components["java"])
+            artifact(javadocJar)
+
+            pom {
+                name.set("AsciiDoc DSL for Kotlin")
+                description.set("A yet very shallow AsciiDoc DSL for Kotlin.")
+                url.set("https://github.com/sschrass/asciidoc-dsl")
+                licenses {
+                    name.set("MIT License")
+                    url.set("https://github.com/sschrass/asciidoc-dsl/blob/mainline/LICENSE")
+                }
+                developers {
+                    developer {
+                        name.set("Stefan Schrass")
+                        email.set("stefan.schrass@gmail.com")
+                        organization.set("io.github.sschrass")
+                        organizationUrl.set("https://github.com/sschrass")
+                    }
+                }
+                scm {
+                    connection.set("scm:git:git://github.com/sschrass/asciidoc-dsl.git")
+                    developerConnection.set("scm:git:git://github.com/sschrass/asciidoc-dsl.git")
+                    url.set("https://github.com/sschrass/asciidoc-dsl")
+                }
+            }
         }
     }
 }
