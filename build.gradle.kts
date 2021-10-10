@@ -14,6 +14,7 @@ plugins {
 group = "io.github.sschrass"
 val artifact = "asciidoc-dsl"
 version = "0.1.0-SNAPSHOT"
+description = "AsciiDoc DSL for Kotlin"
 
 repositories {
     mavenCentral()
@@ -28,6 +29,20 @@ java {
     withSourcesJar()
     sourceCompatibility = JavaVersion.VERSION_16
     targetCompatibility = JavaVersion.VERSION_16
+}
+
+tasks.jar {
+    manifest {
+        attributes(
+            "Name" to "${project.group}.$artifact/".replace(".", "/"),
+            "Specification-Title" to project.description,
+            "Specification-Version" to project.version.toString(),
+            "Specification-Vendor" to "${project.group}",
+            "Implementation-Title" to "${project.group}.$artifact",
+            "Implementation-Version" to project.version.toString(),
+            "Implementation-Vendor" to "${project.group}",
+        )
+    }
 }
 
 val dokka = tasks.dokkaJavadoc
@@ -65,7 +80,7 @@ publishing {
             artifact(javadocJar)
 
             pom {
-                name.set("AsciiDoc DSL for Kotlin")
+                name.set(description)
                 description.set("A yet very shallow AsciiDoc DSL for Kotlin.")
                 url.set("https://github.com/sschrass/asciidoc-dsl")
                 licenses {
