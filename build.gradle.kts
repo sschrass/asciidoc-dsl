@@ -40,20 +40,17 @@ val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
 publishing {
     val ossrhUsername: String? by project
     val ossrhPassword: String? by project
+    val ossrhRepository = if (version.toString().contains("-SNAPSHOT")) {
+        "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+    } else {
+        "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+    }
+
     repositories {
-        if (version.toString().contains("-SNAPSHOT")) {
-            maven("https://s01.oss.sonatype.org/content/repositories/snapshots/") {
-                credentials {
-                    username = ossrhUsername
-                    password = ossrhPassword
-                }
-            }
-        } else {
-            maven("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                credentials {
-                    username = ossrhUsername
-                    password = ossrhPassword
-                }
+        maven(ossrhRepository) {
+            credentials {
+                username = ossrhUsername
+                password = ossrhPassword
             }
         }
     }
