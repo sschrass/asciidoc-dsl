@@ -1,3 +1,4 @@
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -9,6 +10,7 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
     id("com.asarkar.gradle.build-time-tracker") version "3.0.1"
     id("org.jetbrains.dokka") version "1.5.31"
+    id("io.kotest") version "0.3.8"
 }
 
 group = "io.github.sschrass"
@@ -23,6 +25,10 @@ repositories {
 dependencies {
     dokkaJavadocPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.5.31")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:4.6.3")
 }
 
 java {
@@ -118,4 +124,21 @@ tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_16.toString()
     }
+}
+
+tasks.withType<DependencyUpdatesTask> {
+    rejectVersionIf {
+        isNonStable(candidate.version) && !isNonStable(currentVersion)
+    }
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+fun isNonStable(version: String): Boolean {
+    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any(version.toUpperCase()::contains)
+    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+    val isStable = stableKeyword || regex.matches(version)
+    return isStable.not()
 }
