@@ -1,10 +1,17 @@
 package io.github.sschrass.asciidoc.dsl
 
-class Document {
+import io.github.sschrass.asciidoc.dsl.documentheader.DocumentHeader
+
+/**
+ * The default doctype.
+ * In DocBook, includes the appendix, abstract, bibliography, glossary, and index sections.
+ * Unless you are making a book or a man page, you don’t need to worry about the doctype. The default will suffice.
+ */
+class Article {
     private val level = 0
     private val elements = mutableListOf<Element>()
 
-    fun header(init: Header.() -> Unit) = Header(level)
+    fun header(init: DocumentHeader.() -> Unit) = DocumentHeader()
         .also(init)
         .also(elements::add)
 
@@ -20,4 +27,4 @@ class Document {
         .also { builder -> elements.forEach { it.render(builder) } }
 }
 
-fun document(init: Document.() -> Unit): Document = Document().also(init)
+fun article(init: Article.() -> Unit): Article = Article().also(init)

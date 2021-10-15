@@ -34,7 +34,7 @@ java {
 tasks.jar {
     manifest {
         attributes(
-            "Name" to "${project.group}.$artifact/".replace(".", "/"),
+            "Name" to "${project.group}/$artifact/".replace(".", "/"),
             "Specification-Title" to project.description,
             "Specification-Version" to project.version.toString(),
             "Specification-Vendor" to "${project.group}",

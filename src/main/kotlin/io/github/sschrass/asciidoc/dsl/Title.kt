@@ -3,7 +3,7 @@ package io.github.sschrass.asciidoc.dsl
 /**
  * A Title.
  */
-class Title(
+open class Title(
     private val level: Int
 ) : Element {
     private var value: String? = null
