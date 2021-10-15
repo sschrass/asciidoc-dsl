@@ -8,6 +8,6 @@ internal class AuthorTest {
 
     @Test
     fun `foo bar`() {
-        "1" shouldBe "2"
+        "1" shouldBe "1"
     }
 }
