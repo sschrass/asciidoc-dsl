@@ -7,6 +7,7 @@ plugins {
     signing
     id("io.gitlab.arturbosch.detekt") version "1.18.1"
     id("com.github.ben-manes.versions") version "0.39.0"
+    // id("com.autonomousapps.dependency-analysis") version "0.78.0" JDK issue "Unsupported class file major version 60"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
     id("com.asarkar.gradle.build-time-tracker") version "3.0.1"
     id("org.jetbrains.dokka") version "1.5.31"
