@@ -12,6 +12,7 @@ plugins {
     id("com.asarkar.gradle.build-time-tracker") version "3.0.1"
     id("org.jetbrains.dokka") version "1.5.31"
     id("io.kotest") version "0.3.8"
+    id("app.cash.licensee") version "1.2.0"
 }
 
 group = "io.github.sschrass"
@@ -27,9 +28,13 @@ dependencies {
     dokkaJavadocPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.5.31")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
     testImplementation("io.kotest:kotest-assertions-core-jvm:4.6.3")
+}
+
+licensee {
+    allow("Apache-2.0")
 }
 
 java {
@@ -62,11 +67,9 @@ val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
 publishing {
     val ossrhUsername: String? by project
     val ossrhPassword: String? by project
-    val ossrhRepository = if (version.toString().contains("-SNAPSHOT")) {
-        "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-    } else {
-        "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-    }
+    val ossrhRepository = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+        .takeUnless { version.toString().contains("-SNAPSHOT") }
+        ?: "https://s01.oss.sonatype.org/content/repositories/snapshots/"
 
     repositories {
         maven(ossrhRepository) {

@@ -6,6 +6,7 @@ import io.github.sschrass.asciidoc.dsl.Element
  * The document header is a series of contiguous lines at the start of the document that encapsulates
  * the document title, author and revision information, metadata, and document-wide attributes.
  */
+@Suppress("unused")
 class DocumentHeader : Element {
     private val elements = mutableListOf<Element>()
 
