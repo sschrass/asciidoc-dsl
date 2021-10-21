@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 internal class AuthorTest {
 
     @Test
-    fun `foo bar`() {
+    fun `author renders correctly`() {
         val actual = StringBuilder()
         val author = Author()
         author.fullName { +"James T. Kirk" }
