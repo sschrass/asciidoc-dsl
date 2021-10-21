@@ -1,6 +1,7 @@
 package io.github.sschrass.asciidoc.dsl.documentheader
 
 import io.github.sschrass.asciidoc.dsl.Element
+import io.github.sschrass.asciidoc.dsl.documentheader.author.Author
 
 /**
  * The document header is a series of contiguous lines at the start of the document that encapsulates
@@ -8,28 +9,30 @@ import io.github.sschrass.asciidoc.dsl.Element
  */
 @Suppress("unused")
 class DocumentHeader : Element {
-    private val elements = mutableListOf<Element>()
+    private var documentTitle: DocumentTitle? = null
+    private var author: Author? = null
+    private var revision: Revision? = null
+    private var metadata: Metadata? = null
 
     fun documentTitle(init: DocumentTitle.() -> Unit) = DocumentTitle()
         .also(init)
-        .also(elements::add)
+        .also { documentTitle = it }
 
     fun author(init: Author.() -> Unit) = Author()
         .also(init)
-        .also(elements::add)
+        .also { author = it }
 
     fun revision(init: Revision.() -> Unit) = Revision()
         .also(init)
-        .also(elements::add)
+        .also { revision = it }
 
     fun metadata(init: Metadata.() -> Unit) = Metadata()
         .also(init)
-        .also(elements::add)
+        .also { metadata = it }
 
     override fun render(builder: StringBuilder) {
-        if (elements.isNotEmpty()) {
-            elements.forEach { it.render(builder) }
-            builder.append("\n")
-        }
+        listOf(documentTitle, author, revision, metadata)
+            .mapNotNull { it }
+            .forEach { it.render(builder).also { builder.append("\n") } }
     }
 }

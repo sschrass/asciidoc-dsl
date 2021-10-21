@@ -17,7 +17,6 @@ open class Title(
     override fun render(builder: StringBuilder) {
         value?.let {
             builder.append("${prefix()} $it")
-            builder.append("\n")
         }
     }
 }
