@@ -12,7 +12,7 @@ class DocumentHeader : Element {
     private var documentTitle: DocumentTitle? = null
     private var author: Author? = null
     private var revision: Revision? = null
-    private var metadata: Metadata? = null
+    private val metadata: MutableList<Metadata> = mutableListOf()
 
     fun documentTitle(init: DocumentTitle.() -> Unit) = DocumentTitle()
         .also(init)
@@ -26,14 +26,20 @@ class DocumentHeader : Element {
         .also(init)
         .also { revision = it }
 
-    fun metadata(init: Metadata.() -> Unit) = Metadata()
-        .also(init)
-        .also { metadata = it }
+    fun metadata(key: () -> String, value: () -> String) = Metadata(key(), value())
+        .also { metadata.add(it) }
+
+    fun description(value: () -> String) = Description(value())
+        .also { metadata.add(it) }
+
+    fun keywords(value: () -> String) = Keywords(value())
+        .also { metadata.add(it) }
 
     override fun render(builder: StringBuilder) {
-        listOf(documentTitle, author, revision, metadata)
+        listOf(documentTitle, author, revision)
             .mapNotNull { it }
             .forEach { it.render(builder).also { builder.append("\n") } }
+            .also { if (metadata.isNotEmpty()) metadata.forEach { it.render(builder) } }
             .takeIf { documentTitle != null }
             ?.also { builder.append("\n") }
     }
