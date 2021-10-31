@@ -32,7 +32,9 @@ class DocumentHeader : Element {
     fun description(value: () -> String) = Description(value())
         .also { metadata.add(it) }
 
-    fun keywords(value: () -> String) = Keywords(value())
+    fun keywords(value: () -> List<String>) = value()
+        .joinToString(", ")
+        .let(::Keywords)
         .also { metadata.add(it) }
 
     override fun render(builder: StringBuilder) {
