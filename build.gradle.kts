@@ -1,3 +1,4 @@
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -6,9 +7,11 @@ plugins {
     signing
     id("io.gitlab.arturbosch.detekt") version "1.18.1"
     id("com.github.ben-manes.versions") version "0.39.0"
+    // id("com.autonomousapps.dependency-analysis") version "0.78.0" JDK issue "Unsupported class file major version 60"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
     id("com.asarkar.gradle.build-time-tracker") version "3.0.1"
     id("org.jetbrains.dokka") version "1.5.31"
+    id("app.cash.licensee") version "1.3.0"
 }
 
 group = "io.github.sschrass"
@@ -23,6 +26,14 @@ repositories {
 dependencies {
     dokkaJavadocPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.5.31")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
+
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:4.6.3")
+}
+
+licensee {
+    allow("Apache-2.0")
 }
 
 java {
@@ -34,7 +45,7 @@ java {
 tasks.jar {
     manifest {
         attributes(
-            "Name" to "${project.group}.$artifact/".replace(".", "/"),
+            "Name" to "${project.group}/$artifact/".replace(".", "/"),
             "Specification-Title" to project.description,
             "Specification-Version" to project.version.toString(),
             "Specification-Vendor" to "${project.group}",
@@ -55,11 +66,9 @@ val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
 publishing {
     val ossrhUsername: String? by project
     val ossrhPassword: String? by project
-    val ossrhRepository = if (version.toString().contains("-SNAPSHOT")) {
-        "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-    } else {
-        "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-    }
+    val ossrhRepository = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+        .takeUnless { version.toString().contains("-SNAPSHOT") }
+        ?: "https://s01.oss.sonatype.org/content/repositories/snapshots/"
 
     repositories {
         maven(ossrhRepository) {
@@ -118,4 +127,21 @@ tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_16.toString()
     }
+}
+
+tasks.withType<DependencyUpdatesTask> {
+    rejectVersionIf {
+        isNonStable(candidate.version) && !isNonStable(currentVersion)
+    }
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+fun isNonStable(version: String): Boolean {
+    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any(version.toUpperCase()::contains)
+    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+    val isStable = stableKeyword || regex.matches(version)
+    return isStable.not()
 }

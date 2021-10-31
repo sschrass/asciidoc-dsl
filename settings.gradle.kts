@@ -1,1 +1,1 @@
-rootProject.name = "asciidoc-dsl"
+rootProject.name = "AsciidocDsl"
