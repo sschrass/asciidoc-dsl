@@ -1,6 +1,5 @@
-package io.github.sschrass.asciidoc.dsl.documentheader
+package io.github.sschrass.asciidoc.dsl.documentheader.author
 
-import io.github.sschrass.asciidoc.dsl.documentheader.author.Author
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
