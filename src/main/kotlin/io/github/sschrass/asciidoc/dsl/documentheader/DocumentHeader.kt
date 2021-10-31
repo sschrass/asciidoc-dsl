@@ -26,7 +26,8 @@ class DocumentHeader : Element {
         .also(init)
         .also { revision = it }
 
-    fun metadata(key: () -> String, value: () -> String) = Metadata(key(), value())
+    fun metadata(pair: () -> Pair<String, String>) = pair()
+        .let { Metadata(it.first, it.second) }
         .also { metadata.add(it) }
 
     fun description(value: () -> String) = Description(value())

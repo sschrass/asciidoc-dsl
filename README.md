@@ -20,7 +20,7 @@ article {
         }
         description { "The description" }
         keywords { listOf("a", "list", "of", "keywords") }
-        metadata({ "key" }) { "value" }
+        metadata { "key" to "value" }
     }
     paragraph { +"first Paragraph" }
     paragraph { +"second Paragraph" }
