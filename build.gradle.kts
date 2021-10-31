@@ -11,7 +11,7 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
     id("com.asarkar.gradle.build-time-tracker") version "3.0.1"
     id("org.jetbrains.dokka") version "1.5.31"
-    id("app.cash.licensee") version "1.2.0"
+    id("app.cash.licensee") version "1.3.0"
 }
 
 group = "io.github.sschrass"
