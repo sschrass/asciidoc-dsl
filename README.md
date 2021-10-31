@@ -6,24 +6,55 @@ For a different project I need something simple to write an .adoc programaticall
 Usage:
 
 ```
-document {
+article {
     header {
-        title { +"A Document Title" }
+        documentTitle { +"A Document Title" }
+        author {
+            fullName { +"Stefan Schrass" }
+            eMail { +"stefan.schrass@gmail.com" }
+        }
+        revision {
+            number { "123" }
+            date { "2021-01-31" }
+            remark { "5" }
+        }
     }
-    paragraph { +"Some Text" }
-    paragraph { +"Another Text" }
+    paragraph { +"first Paragraph" }
+    paragraph { +"second Paragraph" }
 
     section {
-        title { +"Section title (matches level)" }
+        title { +"Section title" }
+        paragraph { +"Some Text" }
         subSection {
-            title { +"Section title (also matches level)" }
+            title { +"SubSection title" }
             list {
-                + "A thing"
-                + "Another thing"
-                + listOf("two very nice", "things")
+                +"A thing"
+                +"Another thing"
+                +listOf("first thing", "second thing")
             }
         }
     }
 }
     .render()
+```
+
+will produce
+
+```
+= A Document Title
+Stefan Schrass <stefan.schrass@gmail.com>
+123, 2021-01-31:5
+
+first Paragraph
+
+second Paragraph
+
+== Section title
+Some Text
+
+=== SubSection title
+* A thing
+* Another thing
+* first thing
+* second thing
 ```

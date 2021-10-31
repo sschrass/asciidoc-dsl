@@ -34,5 +34,7 @@ class DocumentHeader : Element {
         listOf(documentTitle, author, revision, metadata)
             .mapNotNull { it }
             .forEach { it.render(builder).also { builder.append("\n") } }
+            .takeIf { documentTitle != null }
+            ?.also { builder.append("\n") }
     }
 }
