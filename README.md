@@ -18,6 +18,9 @@ article {
             date { "2021-01-31" }
             remark { "5" }
         }
+        description { "The description" }
+        keywords { listOf("a", "list", "of", "keywords") }
+        metadata({ "key" }) { "value" }
     }
     paragraph { +"first Paragraph" }
     paragraph { +"second Paragraph" }
@@ -44,6 +47,9 @@ will produce
 = A Document Title
 Stefan Schrass <stefan.schrass@gmail.com>
 123, 2021-01-31:5
+:description: The description
+:keywords: a, list, of, keywords
+:key: value
 
 first Paragraph
 
