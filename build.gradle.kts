@@ -42,6 +42,10 @@ java {
     targetCompatibility = JavaVersion.VERSION_16
 }
 
+ktlint {
+    version.set("0.43.0")
+}
+
 tasks.jar {
     manifest {
         attributes(
