@@ -1,5 +1,7 @@
 package io.github.sschrass.asciidoc.dsl
 
+import java.lang.System.lineSeparator
+
 class Paragraph : Element {
     private val text = mutableListOf<String>()
 
@@ -13,9 +15,9 @@ class Paragraph : Element {
 
     override fun render(builder: StringBuilder) {
         if (text.isNotEmpty()) {
-            text.joinToString(separator = " ", postfix = System.lineSeparator())
+            text.joinToString(separator = " ", postfix = lineSeparator())
                 .let(builder::append)
-            builder.append(System.lineSeparator())
+            builder.append(lineSeparator())
         }
     }
 }

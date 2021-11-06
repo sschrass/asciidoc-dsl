@@ -1,5 +1,7 @@
 package io.github.sschrass.asciidoc.dsl
 
+import java.lang.System.lineSeparator
+
 class List : Element {
     private val elements = mutableListOf<String>()
 
@@ -15,7 +17,7 @@ class List : Element {
         if (elements.isNotEmpty()) {
             elements.joinToString(separator = "") { "* $it\n" }
                 .let(builder::append)
-            builder.append(System.lineSeparator())
+            builder.append(lineSeparator())
         }
     }
 }
