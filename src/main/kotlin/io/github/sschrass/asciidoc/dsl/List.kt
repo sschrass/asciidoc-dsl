@@ -15,7 +15,7 @@ class List : Element {
         if (elements.isNotEmpty()) {
             elements.joinToString(separator = "") { "* $it\n" }
                 .let(builder::append)
-            builder.append("\n")
+            builder.append(System.lineSeparator())
         }
     }
 }

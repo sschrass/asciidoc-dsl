@@ -13,9 +13,9 @@ class Paragraph : Element {
 
     override fun render(builder: StringBuilder) {
         if (text.isNotEmpty()) {
-            text.joinToString(separator = " ", postfix = "\n")
+            text.joinToString(separator = " ", postfix = System.lineSeparator())
                 .let(builder::append)
-            builder.append("\n")
+            builder.append(System.lineSeparator())
         }
     }
 }

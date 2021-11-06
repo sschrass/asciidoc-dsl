@@ -28,22 +28,22 @@ class DocumentHeader : Element {
 
     fun metadata(pair: () -> Pair<String, String>) = pair()
         .let { Metadata(it.first, it.second) }
-        .also { metadata.add(it) }
+        .also(metadata::add)
 
     fun description(value: () -> String) = Description(value())
-        .also { metadata.add(it) }
+        .also(metadata::add)
 
     fun keywords(value: () -> List<String>) = value()
         .joinToString(", ")
         .let(::Keywords)
-        .also { metadata.add(it) }
+        .also(metadata::add)
 
     override fun render(builder: StringBuilder) {
         listOf(documentTitle, author, revision)
             .mapNotNull { it }
-            .forEach { it.render(builder).also { builder.append("\n") } }
+            .forEach { it.render(builder).also { builder.append(System.lineSeparator()) } }
             .also { if (metadata.isNotEmpty()) metadata.forEach { it.render(builder) } }
             .takeIf { documentTitle != null }
-            ?.also { builder.append("\n") }
+            ?.also { builder.append(System.lineSeparator()) }
     }
 }
