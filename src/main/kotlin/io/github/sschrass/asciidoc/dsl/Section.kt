@@ -6,8 +6,7 @@ class Section(
     private var title: Title? = null
     private val elements = mutableListOf<Element>()
 
-    fun title(init: Title.() -> Unit) = Title(level)
-        .also(init)
+    fun title(value: () -> String) = Title(value(), level)
         .also { title = it }
 
     fun paragraph(init: Paragraph.() -> Unit) = Paragraph()

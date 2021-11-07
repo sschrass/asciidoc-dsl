@@ -14,8 +14,7 @@ class DocumentHeader : Element {
     private var revision: Revision? = null
     private val metadata: MutableList<Metadata> = mutableListOf()
 
-    fun documentTitle(init: DocumentTitle.() -> Unit) = DocumentTitle()
-        .also(init)
+    fun documentTitle(value: () -> String) = DocumentTitle(value())
         .also { documentTitle = it }
 
     fun author(init: Author.() -> Unit) = Author()
