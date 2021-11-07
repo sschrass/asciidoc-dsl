@@ -3,21 +3,19 @@ package io.github.sschrass.asciidoc.dsl.documentheader.author
 import io.github.sschrass.asciidoc.dsl.Element
 
 class Author : Element {
-    private var fullName: FullName? = null
-    private var eMail: EMail? = null
+    private var fullName: String? = null
+    private var eMail: String? = null
 
-    fun fullName(init: FullName.() -> Unit) = FullName()
-        .also(init)
-        .also { fullName = it }
+    fun fullName(fullName: () -> String) = fullName()
+        .also { this.fullName = it }
 
-    fun eMail(init: EMail.() -> Unit) = EMail()
-        .also(init)
-        .also { eMail = it }
+    fun eMail(eMail: () -> String) = eMail()
+        .also { this.eMail = it }
 
     override fun render(builder: StringBuilder) {
-        fullName?.render(builder)
+        fullName?.let(builder::append)
         eMail
             ?.also { builder.append(" ") }
-            ?.render(builder)
+            ?.let(builder::append)
     }
 }
