@@ -1,7 +1,6 @@
 package io.github.sschrass.asciidoc.dsl.documentheader
 
 import io.github.sschrass.asciidoc.dsl.Element
-import io.github.sschrass.asciidoc.dsl.documentheader.author.Author
 
 /**
  * The document header is a series of contiguous lines at the start of the document that encapsulates
@@ -14,8 +13,7 @@ class DocumentHeader : Element {
     private var revision: Revision? = null
     private val metadata: MutableList<Metadata> = mutableListOf()
 
-    fun documentTitle(init: DocumentTitle.() -> Unit) = DocumentTitle()
-        .also(init)
+    fun documentTitle(value: () -> String) = DocumentTitle(value())
         .also { documentTitle = it }
 
     fun author(init: Author.() -> Unit) = Author()

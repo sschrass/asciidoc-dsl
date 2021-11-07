@@ -8,10 +8,10 @@ Usage:
 ```
 article {
     header {
-        documentTitle { +"A Document Title" }
+        documentTitle { "A Document Title" }
         author {
-            fullName { +"Stefan Schrass" }
-            eMail { +"stefan.schrass@gmail.com" }
+            fullName { "Stefan Schrass" }
+            eMail { "stefan.schrass@gmail.com" }
         }
         revision {
             number { "123" }
@@ -26,10 +26,10 @@ article {
     paragraph { +"second Paragraph" }
 
     section {
-        title { +"Section title" }
+        title { "Section title" }
         paragraph { +"Some Text" }
         subSection {
-            title { +"SubSection title" }
+            title { "SubSection title" }
             list {
                 +"A thing"
                 +"Another thing"
