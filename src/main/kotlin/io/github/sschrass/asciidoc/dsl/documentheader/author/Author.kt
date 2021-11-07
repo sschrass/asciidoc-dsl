@@ -16,6 +16,6 @@ class Author : Element {
         fullName?.let(builder::append)
         eMail
             ?.also { builder.append(" ") }
-            ?.let(builder::append)
+            ?.let { builder.append("<$it>") }
     }
 }
