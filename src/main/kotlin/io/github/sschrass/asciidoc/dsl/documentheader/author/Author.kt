@@ -14,8 +14,6 @@ class Author : Element {
 
     override fun render(builder: StringBuilder) {
         fullName?.let(builder::append)
-        eMail
-            ?.also { builder.append(" ") }
-            ?.let { builder.append("<$it>") }
+        eMail?.let { builder.append(" <$it>") }
     }
 }
