@@ -1,7 +1,6 @@
 package io.github.sschrass.asciidoc.dsl.documentheader
 
 import io.github.sschrass.asciidoc.dsl.Element
-import io.github.sschrass.asciidoc.dsl.documentheader.author.Author
 
 /**
  * The document header is a series of contiguous lines at the start of the document that encapsulates
