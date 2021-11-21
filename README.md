@@ -52,7 +52,7 @@ article {
 
 will produce
 
-```markdown
+```asciidoc
 = A Document Title
 Stefan Schrass <stefan.schrass@gmail.com>
 123, 2021-01-31:5
