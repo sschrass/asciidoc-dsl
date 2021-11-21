@@ -16,7 +16,7 @@ plugins {
 
 group = "io.github.sschrass"
 val artifact = "asciidoc-dsl"
-version = "0.1.1-SNAPSHOT"
+version = "0.1.0"
 description = "AsciiDoc DSL for Kotlin"
 
 repositories {
@@ -97,8 +97,10 @@ publishing {
                 description.set("A yet very shallow AsciiDoc DSL for Kotlin.")
                 url.set("https://github.com/sschrass/asciidoc-dsl")
                 licenses {
-                    name.set("MIT License")
-                    url.set("https://github.com/sschrass/asciidoc-dsl/blob/mainline/LICENSE")
+                    license {
+                        name.set("MIT License")
+                        url.set("https://github.com/sschrass/asciidoc-dsl/blob/mainline/LICENSE")
+                    }
                 }
                 developers {
                     developer {
