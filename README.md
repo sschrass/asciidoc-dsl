@@ -8,7 +8,11 @@ A yet very shallow AsciiDoc DSL for Kotlin.
 
 For a different project I need something simple to write an .adoc programatically, so I ended up writing this.
 
-Usage:
+## Installation
+
+Gradle (short) `implementation("io.github.sschrass:asciidoc-dsl:$version")`
+
+## Usage
 
 ```
 article {
