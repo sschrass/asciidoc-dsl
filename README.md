@@ -1,7 +1,7 @@
 
 # asciidoc-dsl
 
-https://img.shields.io/github/license/sschrass/asciidoc-dsl
+![License](https://img.shields.io/github/license/sschrass/asciidoc-dsl)
 
 A yet very shallow AsciiDoc DSL for Kotlin.
 
