@@ -16,7 +16,7 @@ plugins {
 
 group = "io.github.sschrass"
 val artifact = "asciidoc-dsl"
-version = "0.1.0"
+version = "0.1.1-SNAPSHOT"
 description = "AsciiDoc DSL for Kotlin"
 
 repositories {
