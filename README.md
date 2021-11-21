@@ -14,7 +14,7 @@ Gradle (short) `implementation("io.github.sschrass:asciidoc-dsl:$version")`
 
 ## Usage
 
-```
+```kotlin
 article {
     header {
         documentTitle { "A Document Title" }
@@ -52,7 +52,7 @@ article {
 
 will produce
 
-```
+```shell
 = A Document Title
 Stefan Schrass <stefan.schrass@gmail.com>
 123, 2021-01-31:5
