@@ -3,6 +3,7 @@
 
 ![License](https://img.shields.io/github/license/sschrass/asciidoc-dsl)
 ![Version](https://img.shields.io/maven-central/v/io.github.sschrass/asciidoc-dsl)
+![last commit](https://img.shields.io/github/last-commit/sschrass/asciidoc-dsl)
 
 A yet very shallow AsciiDoc DSL for Kotlin.
 
