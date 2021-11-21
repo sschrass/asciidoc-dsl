@@ -1,21 +1,22 @@
 
-# asciidoc-dsl
+= asciidoc-dsl
 
-![License](https://img.shields.io/github/license/sschrass/asciidoc-dsl)
-![Version](https://img.shields.io/maven-central/v/io.github.sschrass/asciidoc-dsl)
-![last commit](https://img.shields.io/github/last-commit/sschrass/asciidoc-dsl)
+image:https://img.shields.io/github/license/sschrass/asciidoc-dsl[]
+image:https://img.shields.io/maven-central/v/io.github.sschrass/asciidoc-dsl[]
+image:https://img.shields.io/github/last-commit/sschrass/asciidoc-dsl[]
 
 A yet very shallow AsciiDoc DSL for Kotlin.
 
 For a different project I need something simple to write an .adoc programatically, so I ended up writing this.
 
-## Installation
+== Installation
 
 Gradle (short) `implementation("io.github.sschrass:asciidoc-dsl:$version")`
 
-## Usage
+== Usage
 
-```kotlin
+[source,kotlin]
+----
 article {
     header {
         documentTitle { "A Document Title" }
@@ -49,11 +50,12 @@ article {
     }
 }
     .render()
-```
+----
 
 will produce
 
-```asciidoc
+[source,asciidoc]
+----
 = A Document Title
 Stefan Schrass <stefan.schrass@gmail.com>
 123, 2021-01-31:5
@@ -73,4 +75,4 @@ Some Text
 * Another thing
 * first thing
 * second thing
-```
+----
