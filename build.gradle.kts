@@ -10,8 +10,8 @@ plugins {
     // id("com.autonomousapps.dependency-analysis") version "0.78.0" JDK issue "Unsupported class file major version 60"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
     id("com.asarkar.gradle.build-time-tracker") version "3.0.1"
-    id("org.jetbrains.dokka") version "1.5.31"
-    id("app.cash.licensee") version "1.3.0"
+    id("org.jetbrains.dokka") version "1.6.0"
+    id("app.cash.licensee") version "1.3.1"
 }
 
 group = "io.github.sschrass"
@@ -24,12 +24,12 @@ repositories {
 }
 
 dependencies {
-    dokkaJavadocPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.5.31")
+    dokkaJavadocPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.6.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.0")
 
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
-    testImplementation("io.kotest:kotest-assertions-core-jvm:4.6.3")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:5.0.0")
 }
 
 licensee {
