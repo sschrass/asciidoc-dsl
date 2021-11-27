@@ -20,25 +20,27 @@ Gradle (short) `implementation("io.github.sschrass:asciidoc-dsl:$version")`
 ----
 article {
     header {
-        documentTitle { "A Document Title" }
+        documentTitle { "AsciiDoc DSL for Kotlin" }
         author {
             fullName { "Stefan Schrass" }
             eMail { "stefan.schrass@gmail.com" }
         }
         revision {
-            number { "123" }
-            date { "2021-01-31" }
+            number { "v0.1.1" }
+            date { "2021-11-27" }
             remark { "5" }
         }
-        description { "The description" }
-        keywords { listOf("a", "list", "of", "keywords") }
-        metadata { "key" to "value" }
+        description { "A yet very shallow AsciiDoc DSL for Kotlin." }
+        keywords { listOf("AsciiDoc", "DSL", "Kotlin") }
+        metadata { "status" to "incubating" }
     }
+
     paragraph { +"first Paragraph" }
     paragraph { +"second Paragraph" }
 
+    sectionNumbers { true }
     section {
-        title { "Section title" }
+        title { "A numbered Section" }
         paragraph { +"Some Text" }
         subSection {
             title { "SubSection title" }
@@ -49,6 +51,11 @@ article {
             }
         }
     }
+    sectionNumbers { false }
+    section {
+        title { "Unnumbered Section" }
+        paragraph { +"Some Text" }
+    }
 }
     .render()
 ----
@@ -57,18 +64,19 @@ will produce
 
 [source,asciidoc]
 ----
-= A Document Title
+= AsciiDoc DSL for Kotlin
 Stefan Schrass <stefan.schrass@gmail.com>
-123, 2021-01-31:5
-:description: The description
-:keywords: a, list, of, keywords
-:key: value
+v0.1.1, 2021-11-27:5
+:description: A yet very shallow AsciiDoc DSL for Kotlin.
+:keywords: AsciiDoc, DSL, Kotlin
+:status: incubating
 
 first Paragraph
 
 second Paragraph
 
-== Section title
+:sectnums:
+== A numbered Section
 Some Text
 
 === SubSection title
@@ -76,4 +84,8 @@ Some Text
 * Another thing
 * first thing
 * second thing
+
+:sectnums!:
+== Unnumbered Section
+Some Text
 ----

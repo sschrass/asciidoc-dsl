@@ -19,6 +19,9 @@ class Article {
         .also(init)
         .also(elements::add)
 
+    fun sectionNumbers(enabled: () -> Boolean) = SectionNumbers(enabled())
+        .also(elements::add)
+
     fun section(init: Section.() -> Unit) = Section(level + 1)
         .also(init)
         .also(elements::add)

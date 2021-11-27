@@ -1,6 +1,7 @@
 package io.github.sschrass.asciidoc.dsl.documentheader
 
 import io.github.sschrass.asciidoc.dsl.Element
+import io.github.sschrass.asciidoc.dsl.SectionNumbers
 
 /**
  * The document header is a series of contiguous lines at the start of the document that encapsulates
@@ -11,7 +12,7 @@ class DocumentHeader : Element {
     private var documentTitle: DocumentTitle? = null
     private var author: Author? = null
     private var revision: Revision? = null
-    private val metadata: MutableList<Metadata> = mutableListOf()
+    private val metadata: MutableList<Element> = mutableListOf()
 
     fun documentTitle(value: () -> String) = DocumentTitle(value())
         .also { documentTitle = it }
@@ -34,6 +35,9 @@ class DocumentHeader : Element {
     fun keywords(value: () -> List<String>) = value()
         .joinToString(", ")
         .let(::Keywords)
+        .also(metadata::add)
+
+    fun sectionNumbers(enabled: () -> Boolean) = SectionNumbers(enabled())
         .also(metadata::add)
 
     override fun render(builder: StringBuilder) {

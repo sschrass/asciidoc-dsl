@@ -1,5 +1,6 @@
 package io.github.sschrass.asciidoc.dsl
 
+@Suppress("unused")
 class Section(
     private val level: Int
 ) : Element {
@@ -8,6 +9,9 @@ class Section(
 
     fun title(value: () -> String) = Title(value(), level)
         .also { title = it }
+
+    fun sectionNumbers(enabled: () -> Boolean) = SectionNumbers(enabled())
+        .also(elements::add)
 
     fun paragraph(init: Paragraph.() -> Unit) = Paragraph()
         .also(init)
