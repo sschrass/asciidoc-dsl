@@ -18,11 +18,14 @@ jobs:
           distribution: 'adopt'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
-      - uses: gradle/gradle-build-action@v2
+      - name: Build
+        uses: gradle/gradle-build-action@v2
         with:
           arguments: build --scan
       - name: Publish
-        run: ./gradlew publish
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: publish --scan
         env:
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.ORG_GRADLE_PROJECT_signingKey }}
           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.ORG_GRADLE_PROJECT_signingPassword }}
