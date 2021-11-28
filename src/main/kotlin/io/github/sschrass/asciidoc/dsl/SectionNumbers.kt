@@ -1,7 +1,7 @@
 package io.github.sschrass.asciidoc.dsl
 
 class SectionNumbers(
-    private var enabled: Boolean
+    private val enabled: Boolean
 ) : Element {
 
     override fun render(builder: StringBuilder) {
