@@ -5,7 +5,7 @@ plugins {
     kotlin("jvm") version "1.6.0"
     `maven-publish`
     signing
-    id("io.gitlab.arturbosch.detekt") version "1.18.1"
+    id("io.gitlab.arturbosch.detekt") version "1.19.0"
     id("com.github.ben-manes.versions") version "0.39.0"
     // id("com.autonomousapps.dependency-analysis") version "0.78.0" JDK issue "Unsupported class file major version 60"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
@@ -29,7 +29,7 @@ dependencies {
 
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
-    testImplementation("io.kotest:kotest-assertions-core-jvm:5.0.0")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:5.0.1")
 }
 
 licensee {
@@ -43,7 +43,7 @@ java {
 }
 
 ktlint {
-    version.set("0.43.0")
+    version.set("0.43.2")
 }
 
 tasks.jar {
