@@ -7,11 +7,22 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], a
 == [0.1.1-SNAPSHOT]
 
 === Added
+
 * Numbered Sections
+
+=== Changed
+
+* Kotlin 1.6.21
+* Gradle 7.4.2
+
+=== Fixed
+
+* Hickup in the pom artifact description
 
 == [https://search.maven.org/artifact/io.github.sschrass/asciidoc-dsl/0.1.0/jar[*0.1.0*^,role=blue]] - 2021-11-20
 
 === Added
+
 * Document Header incl. basic attributes
 * Document Type Article
 * Paragraph
