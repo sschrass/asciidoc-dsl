@@ -1,7 +1,6 @@
 package io.github.sschrass.asciidoc.dsl.documentheader
 
 import io.github.sschrass.asciidoc.dsl.Element
-import java.lang.System.lineSeparator
 
 open class Metadata(
     private val key: String,
@@ -9,7 +8,7 @@ open class Metadata(
 ) : Element {
 
     override fun render(builder: StringBuilder) {
-        builder.append(":$key:${value?.let { " $it" } ?: ""}${lineSeparator()}")
+        builder.appendLine(":$key:${value?.let { " $it" } ?: ""}")
     }
 }
 
