@@ -10,6 +10,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], a
 
 * Numbered Sections
 * Title level caps at 5
+* Document now accepts key-only metadata (flags)
 
 === Changed
 
