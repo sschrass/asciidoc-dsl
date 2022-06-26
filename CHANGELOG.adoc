@@ -9,10 +9,11 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], a
 === Added
 
 * Numbered Sections
+* Title level caps at 5
 
 === Changed
 
-* Kotlin 1.6.21
+* Kotlin 1.7.1
 * Gradle 7.4.2
 
 === Fixed
