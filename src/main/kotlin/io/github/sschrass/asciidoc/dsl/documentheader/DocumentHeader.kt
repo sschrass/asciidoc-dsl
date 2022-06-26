@@ -32,6 +32,9 @@ class DocumentHeader : Element {
     fun description(value: () -> String) = Description(value())
         .also(metadata::add)
 
+    fun flag(value: () -> String) = Flag(value())
+        .also(metadata::add)
+
     fun keywords(value: () -> List<String>) = value()
         .joinToString(", ")
         .let(::Keywords)

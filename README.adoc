@@ -33,6 +33,7 @@ article {
         description { "A yet very shallow AsciiDoc DSL for Kotlin." }
         keywords { listOf("AsciiDoc", "DSL", "Kotlin") }
         metadata { "status" to "incubating" }
+        flag {"hide-uri-scheme"}
     }
 
     paragraph { +"first Paragraph" }
@@ -70,6 +71,7 @@ v0.1.1, 2021-11-27:5
 :description: A yet very shallow AsciiDoc DSL for Kotlin.
 :keywords: AsciiDoc, DSL, Kotlin
 :status: incubating
+:hide-uri-scheme:
 
 first Paragraph
 

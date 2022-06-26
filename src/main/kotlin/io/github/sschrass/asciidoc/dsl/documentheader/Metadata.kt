@@ -5,13 +5,14 @@ import java.lang.System.lineSeparator
 
 open class Metadata(
     private val key: String,
-    private val value: String
+    private val value: String? = null
 ) : Element {
 
     override fun render(builder: StringBuilder) {
-        builder.append(":$key: $value${lineSeparator()}")
+        builder.append(":$key:${value?.let { " $it" } ?: ""}${lineSeparator()}")
     }
 }
 
+class Flag(key: String) : Metadata(key)
 class Description(value: String) : Metadata("description", value)
 class Keywords(value: String) : Metadata("keywords", value)
