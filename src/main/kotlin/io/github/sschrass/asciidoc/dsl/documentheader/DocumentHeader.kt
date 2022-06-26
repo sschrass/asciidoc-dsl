@@ -46,9 +46,9 @@ class DocumentHeader : Element {
     override fun render(builder: StringBuilder) {
         listOf(documentTitle, author, revision)
             .mapNotNull { it }
-            .forEach { it.render(builder).also { builder.append(System.lineSeparator()) } }
+            .forEach { it.render(builder).also { builder.appendLine() } }
             .also { if (metadata.isNotEmpty()) metadata.forEach { it.render(builder) } }
             .takeIf { documentTitle != null }
-            ?.also { builder.append(System.lineSeparator()) }
+            ?.also { builder.appendLine() }
     }
 }

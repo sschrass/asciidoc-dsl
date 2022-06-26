@@ -11,7 +11,7 @@ open class Title(
     protected fun prefix() = "=".repeat((level + 1).coerceAtMost(MAX_LEVEL))
 
     override fun render(builder: StringBuilder) {
-        value.let { builder.append("${prefix()} $it${System.lineSeparator()}") }
+        value.let { builder.appendLine("${prefix()} $it") }
     }
 
     companion object {

@@ -16,8 +16,7 @@ class Paragraph : Element {
     override fun render(builder: StringBuilder) {
         if (text.isNotEmpty()) {
             text.joinToString(separator = " ", postfix = lineSeparator())
-                .let(builder::append)
-            builder.append(lineSeparator())
+                .let(builder::appendLine)
         }
     }
 }

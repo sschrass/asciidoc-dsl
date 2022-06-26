@@ -6,8 +6,7 @@ class SectionNumbers(
 
     override fun render(builder: StringBuilder) {
         takeIf { enabled }
-            ?.also { builder.append(":sectnums:") }
-            ?: builder.append(":sectnums!:")
-        builder.append(System.lineSeparator())
+            ?.also { builder.appendLine(":sectnums:") }
+            ?: builder.appendLine(":sectnums!:")
     }
 }

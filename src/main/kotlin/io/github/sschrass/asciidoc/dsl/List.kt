@@ -16,8 +16,7 @@ class List : Element {
     override fun render(builder: StringBuilder) {
         if (elements.isNotEmpty()) {
             elements.joinToString(separator = "") { "* $it${lineSeparator()}" }
-                .let(builder::append)
-            builder.append(lineSeparator())
+                .let(builder::appendLine)
         }
     }
 }
