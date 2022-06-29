@@ -14,7 +14,7 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], a
 
 === Changed
 
-* Kotlin 1.7.1
+* Kotlin 1.7.0
 * Gradle 7.4.2
 * `StringBuilder.append(System.lineSeparator())` replaced by `StringBuild.appendLine()`
 

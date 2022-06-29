@@ -9,7 +9,7 @@ internal class TitleTest {
     @Test
     fun `title level caps at max level`() {
         val actual = StringBuilder()
-        Title("test", Int.MAX_VALUE - 1)
+        Title("test", 1000)
             .render(actual)
 
         actual.toString() shouldBe "===== test${lineSeparator()}"
