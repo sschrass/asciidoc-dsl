@@ -7,7 +7,7 @@ plugins {
     signing
     id("io.gitlab.arturbosch.detekt") version "1.20.0"
     id("com.github.ben-manes.versions") version "0.42.0"
-    id("com.autonomousapps.dependency-analysis") version "1.8.0"
+    id("com.autonomousapps.dependency-analysis") version "1.9.0"
     id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
     id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
     id("org.jetbrains.dokka") version "1.7.0"
@@ -44,7 +44,7 @@ java {
 }
 
 ktlint {
-    version.set("0.45.2")
+    version.set("0.46.1")
 }
 
 tasks.jar {
@@ -130,13 +130,13 @@ signing {
     }
 }
 
-tasks.withType<KotlinCompile> {
+tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_16.toString()
     }
 }
 
-tasks.withType<DependencyUpdatesTask> {
+tasks.withType<DependencyUpdatesTask>().configureEach {
     rejectVersionIf {
         isNonStable(candidate.version) && !isNonStable(currentVersion)
     }
