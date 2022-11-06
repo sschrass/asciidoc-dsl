@@ -6,6 +6,12 @@ The format is based on https://keepachangelog.com/en/1.0.0/[Keep a Changelog], a
 
 == [0.1.1-SNAPSHOT]
 
+=== Changed
+
+* Gradle 7.5.1
+* Kotlin 1.7.20
+* Various dependencies updated
+
 === Added
 
 * Numbered Sections
