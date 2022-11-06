@@ -10,20 +10,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@v1
-      - name: Set up JDK 16
-        uses: actions/setup-java@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: gradle/wrapper-validation-action@v1
+
+      - name: JDK environment
+        uses: actions/setup-java@v3
         with:
-          java-version: '16'
-          distribution: 'adopt'
+          java-version: 17
+          distribution: "adopt"
+
       - name: Build
         uses: gradle/gradle-build-action@v2
+        id: build
         with:
           arguments: build --scan
+
       - name: Publish
         uses: gradle/gradle-build-action@v2
+        id: publish
         with:
           arguments: publish --scan
         env:
