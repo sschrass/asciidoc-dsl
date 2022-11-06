@@ -44,7 +44,7 @@ java {
 }
 
 ktlint {
-    version.set("0.47.1")
+    version.set("0.45.1")
 }
 
 tasks.jar {
