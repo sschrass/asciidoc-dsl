@@ -8,7 +8,6 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.22.0"
     id("com.github.ben-manes.versions") version "0.45.0"
     id("com.autonomousapps.dependency-analysis") version "1.19.0"
-    id("org.jlleitschuh.gradle.ktlint") version "11.2.0"
     id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
     id("org.jetbrains.dokka") version "1.7.20"
     id("app.cash.licensee") version "1.6.0"
@@ -40,12 +39,8 @@ licensee {
 
 java {
     withSourcesJar()
-    sourceCompatibility = JavaVersion.VERSION_16
-    targetCompatibility = JavaVersion.VERSION_16
-}
-
-ktlint {
-    version.set("0.48.2")
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 tasks.jar {
