@@ -2,13 +2,13 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.7.20"
+    `kotlin-dsl`
     `maven-publish`
     signing
-    id("io.gitlab.arturbosch.detekt") version "1.21.0"
-    id("com.github.ben-manes.versions") version "0.43.0"
-    id("com.autonomousapps.dependency-analysis") version "1.13.1"
-    id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
+    id("io.gitlab.arturbosch.detekt") version "1.22.0"
+    id("com.github.ben-manes.versions") version "0.45.0"
+    id("com.autonomousapps.dependency-analysis") version "1.19.0"
+    id("org.jlleitschuh.gradle.ktlint") version "11.2.0"
     id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
     id("org.jetbrains.dokka") version "1.7.20"
     id("app.cash.licensee") version "1.6.0"
@@ -24,13 +24,14 @@ repositories {
 }
 
 dependencies {
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     dokkaJavadocPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
-    api("org.jetbrains.kotlin:kotlin-stdlib:1.7.20")
+    api("org.jetbrains.kotlin:kotlin-stdlib")
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
-    testImplementation("io.kotest:kotest-assertions-core-jvm:5.5.4")
-    testImplementation("io.kotest:kotest-assertions-shared-jvm:5.5.4")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:5.5.5")
+    testImplementation("io.kotest:kotest-assertions-shared-jvm:5.5.5")
 }
 
 licensee {
@@ -44,7 +45,7 @@ java {
 }
 
 ktlint {
-    version.set("0.45.1")
+    version.set("0.48.2")
 }
 
 tasks.jar {
