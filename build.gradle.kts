@@ -128,7 +128,7 @@ signing {
 
 tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_16.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 }
 
