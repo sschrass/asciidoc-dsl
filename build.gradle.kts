@@ -5,12 +5,12 @@ plugins {
     `kotlin-dsl`
     `maven-publish`
     signing
-    id("io.gitlab.arturbosch.detekt") version "1.22.0"
-    id("com.github.ben-manes.versions") version "0.45.0"
-    id("com.autonomousapps.dependency-analysis") version "1.19.0"
+    id("io.gitlab.arturbosch.detekt") version "1.23.5"
+    id("com.github.ben-manes.versions") version "0.51.0"
+    id("com.autonomousapps.dependency-analysis") version "1.29.0"
     id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
-    id("org.jetbrains.dokka") version "1.7.20"
-    id("app.cash.licensee") version "1.6.0"
+    id("org.jetbrains.dokka") version "1.9.10"
+    id("app.cash.licensee") version "1.9.1"
 }
 
 group = "io.github.sschrass"
@@ -24,13 +24,13 @@ repositories {
 
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-    dokkaJavadocPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.7.20")
+    dokkaJavadocPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.9.10")
     api("org.jetbrains.kotlin:kotlin-stdlib")
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
-    testImplementation("io.kotest:kotest-assertions-core-jvm:5.5.5")
-    testImplementation("io.kotest:kotest-assertions-shared-jvm:5.5.5")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:5.8.0")
+    testImplementation("io.kotest:kotest-assertions-shared-jvm:5.8.0")
 }
 
 licensee {
@@ -39,8 +39,8 @@ licensee {
 
 java {
     withSourcesJar()
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 tasks.jar {
@@ -128,7 +128,7 @@ signing {
 
 tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = JavaVersion.VERSION_21.toString()
     }
 }
 
@@ -143,7 +143,7 @@ tasks.test {
 }
 
 fun isNonStable(version: String): Boolean {
-    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any(version.toUpperCase()::contains)
+    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any(version.uppercase()::contains)
     val regex = "^[0-9,.v-]+(-r)?$".toRegex()
     val isStable = stableKeyword || regex.matches(version)
     return isStable.not()
