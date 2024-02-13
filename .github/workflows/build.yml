@@ -28,7 +28,7 @@ jobs:
           arguments: build --scan
 
       - name: Publish
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
         id: publish
         with:
           arguments: publish --scan
