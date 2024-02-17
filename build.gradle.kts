@@ -65,8 +65,8 @@ val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
 }
 
 publishing {
-    val OSSRHUSERNAME: String? by project
-    val OSSRHPASSWORD: String? by project
+    val ossrhUsername: String? by project
+    val ossrhPassword: String? by project
     val ossrhRepository = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
         .takeUnless { version.toString().contains("-SNAPSHOT") }
         ?: "https://s01.oss.sonatype.org/content/repositories/snapshots/"
@@ -74,8 +74,8 @@ publishing {
     repositories {
         maven(ossrhRepository) {
             credentials {
-                username = OSSRHUSERNAME
-                password = OSSRHPASSWORD
+                username = ossrhUsername
+                password = ossrhPassword
             }
         }
     }
@@ -118,10 +118,10 @@ publishing {
 }
 
 signing {
-    val SIGNINGKEY: String? by project
-    val SIGNINGPASSWORD: String? by project
-    if (SIGNINGKEY != null && SIGNINGPASSWORD != null) {
-        useInMemoryPgpKeys(SIGNINGKEY, SIGNINGPASSWORD)
+    val signingKey: String? by project
+    val signingPassword: String? by project
+    if (signingKey != null && signingPassword != null) {
+        useInMemoryPgpKeys(signingKey, signingPassword)
         sign(publishing.publications[rootProject.name])
     }
 }
