@@ -5,17 +5,17 @@ plugins {
     `kotlin-dsl`
     `maven-publish`
     signing
-    id("io.gitlab.arturbosch.detekt") version "1.23.5"
-    id("com.github.ben-manes.versions") version "0.51.0"
-    id("com.autonomousapps.dependency-analysis") version "1.29.0"
-    id("com.asarkar.gradle.build-time-tracker") version "4.3.0"
-    id("org.jetbrains.dokka") version "1.9.10"
-    id("app.cash.licensee") version "1.9.1"
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.versions)
+    alias(libs.plugins.dependency.analysis)
+    alias(libs.plugins.build.time.tracker)
+    alias(libs.plugins.dokka)
+    alias(libs.plugins.licensee)
 }
 
 group = "io.github.sschrass"
 val artifact = "asciidoc-dsl"
-version = "0.1.1-SNAPSHOT"
+version = "0.1.1"
 description = "AsciiDoc DSL for Kotlin"
 
 repositories {
@@ -23,14 +23,14 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-    dokkaJavadocPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.9.10")
-    api("org.jetbrains.kotlin:kotlin-stdlib")
+    implementation(platform(libs.kotlin.bom))
+    implementation(libs.kotlin.stdlib)
+    dokkaJavadocPlugin(libs.dokka.plugin)
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
-    testImplementation("io.kotest:kotest-assertions-core-jvm:5.8.0")
-    testImplementation("io.kotest:kotest-assertions-shared-jvm:5.8.0")
+    testRuntimeOnly(libs.junit.jupiter.engine)
+    testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.kotest.assertions.core)
+    testImplementation(libs.kotest.assertions.shared)
 }
 
 licensee {
