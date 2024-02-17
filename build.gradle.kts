@@ -67,7 +67,7 @@ val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
 publishing {
     val ossrhUsername: String? by project
     val ossrhPassword: String? by project
-    val ossrhRepository = "https://s01.oss.sonatype.org/service/local/"//staging/deploy/maven2/"
+    val ossrhRepository = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
         .takeUnless { version.toString().contains("-SNAPSHOT") }
         ?: "https://s01.oss.sonatype.org/content/repositories/snapshots/"
 
