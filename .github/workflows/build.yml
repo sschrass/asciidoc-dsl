@@ -1,13 +1,11 @@
-name: CI
+name: Build Workflow
 
 on:
-  push:
-    branches: [ mainline ]
-  pull_request:
-    branches: [ mainline ]
-  workflow_dispatch:
+  workflow_call:
+
 jobs:
-  build:
+  build-workflow:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,14 +24,3 @@ jobs:
         id: build
         with:
           arguments: build --scan
-
-      - name: Publish
-        uses: gradle/gradle-build-action@v3
-        id: publish
-        with:
-          arguments: publish --scan
-        env:
-          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGKEY }}
-          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGPASSWORD }}
-          ORG_GRADLE_PROJECT_ossrhUsername: ${{ secrets.ORG_GRADLE_PROJECT_OSSRHUSERNAME }}
-          ORG_GRADLE_PROJECT_ossrhPassword: ${{ secrets.ORG_GRADLE_PROJECT_OSSRHPASSWORD }}

@@ -1,0 +1,20 @@
+name: Deploy Workflow
+
+on:
+  workflow_call:
+
+jobs:
+  deploy-workflow:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish
+        uses: gradle/gradle-build-action@v3
+        id: publish
+        with:
+          arguments: publish --scan
+        env:
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGKEY }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGPASSWORD }}
+          ORG_GRADLE_PROJECT_ossrhUsername: ${{ secrets.ORG_GRADLE_PROJECT_OSSRHUSERNAME }}
+          ORG_GRADLE_PROJECT_ossrhPassword: ${{ secrets.ORG_GRADLE_PROJECT_OSSRHPASSWORD }}
