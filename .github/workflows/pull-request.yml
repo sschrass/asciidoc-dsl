@@ -1,8 +1,9 @@
 name: Pull Request Workflow
+
 on:
   pull_request:
     branches: [ mainline ]
 
 jobs:
   build-workflow:
-    uses: ./.github/workflow/build.yml
+    uses: ./.github/workflows/build.yml
