@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -27,8 +29,8 @@ dependencies {
     implementation(libs.kotlin.stdlib)
     dokkaJavadocPlugin(libs.dokka.plugin)
 
-    testRuntimeOnly(libs.junit.jupiter.engine)
-    testImplementation(libs.junit.jupiter.api)
+    //testRuntimeOnly(libs.junit.jupiter.engine)
+    //testImplementation(libs.junit.jupiter.api)
     testImplementation(libs.kotest.assertions.core)
     testImplementation(libs.kotest.assertions.shared)
 }
@@ -39,8 +41,8 @@ licensee {
 
 java {
     withSourcesJar()
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 tasks.jar {
@@ -126,9 +128,17 @@ signing {
     }
 }
 
+testing {
+    suites {
+        val test by getting(JvmTestSuite::class) {
+            useJUnitJupiter()
+        }
+    }
+}
+
 tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_21.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 }
 
