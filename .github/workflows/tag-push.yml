@@ -1,0 +1,10 @@
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  build-workflow:
+    uses: ./.github/workflow/build.yml
+  deplyo-workflow:
+    uses: ./.github/workflow/deploy.yml
